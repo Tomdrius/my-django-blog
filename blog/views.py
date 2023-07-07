@@ -1,5 +1,5 @@
-from django.utils import timezone
 from django.shortcuts import render, get_object_or_404, redirect
+from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 
@@ -22,8 +22,6 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
-            # post.text = form.cleaned_data['text']
-            print(post) #nic nie wyświetla
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
